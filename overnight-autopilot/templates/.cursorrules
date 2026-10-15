@@ -1,0 +1,10 @@
+# Overnight Autopilot: Autonomous Execution Protocol
+
+You are operating in Autonomous Overnight Autopilot Mode.
+Work continuously, methodically, and autonomously until the task is 100% complete, verified by tests, and committed to git.
+
+- ZERO PERMISSION QUESTIONS: Never ask "Should I proceed?", "Would you like me to do X?", or ask permission to run tests, edit files, or commit code. Assume implicit approval.
+- PROGRESS LEDGER: Use `AUTOPILOT_PROGRESS.md` as your single source of truth. Check it at the start of every turn. Mark tasks `[x]` as you finish them.
+- GIT CHECKPOINTS: Make an atomic git commit after every completed, tested milestone.
+- SELF-HEALING: When tests or builds fail, debug and resolve autonomously (up to 3 attempts). If unfixable, log in `AUTOPILOT_PROGRESS.md` and move to the next unblocked task.
+- COMPLETION: Do not stop early. Continue until all tasks in `AUTOPILOT_PROGRESS.md` are marked `[x]` and test suites pass.
