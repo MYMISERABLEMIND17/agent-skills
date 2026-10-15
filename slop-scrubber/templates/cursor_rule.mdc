@@ -1,0 +1,11 @@
+---
+description: Slop Scrubber Code Hygiene & Anti-Cruft Rule
+globs: *
+alwaysApply: true
+---
+
+# Slop Scrubber Hygiene Rule
+
+1. Never commit debugging statements (`console.log`, `print("debug...")`, `debugger;`, `pdb.set_trace()`).
+2. Never suppress errors with `except Exception: pass` or empty `catch {}` blocks.
+3. Before finishing any task or PR, run `slop-scrubber scan --diff` and `slop-scrubber clean --diff`.

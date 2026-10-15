@@ -1,0 +1,13 @@
+---
+description: Amnesia Bridge Negative Knowledge Ledger & Anti-Thrashing Guard
+globs: *
+alwaysApply: true
+---
+
+# Amnesia Bridge: Anti-Thrashing Rule
+
+1. Before installing new libraries, altering build configs, or refactoring architecture, check `.agents/FAILURE_GRAVEYARD.md` or run:
+   `amnesia-bridge check "<intended approach>"`
+2. If an approach is listed as a Dead End, DO NOT RETRY IT.
+3. If an approach fails twice, immediately record it into `.agents/FAILURE_GRAVEYARD.md` using:
+   `amnesia-bridge record -c "<Category>" -a "<Attempt>" -e "<Error>" -r "<Forbidden Rule>"`

@@ -1,0 +1,4 @@
+# Amnesia Bridge: Anti-Thrashing & Negative Knowledge Protocol
+- Never repeat an approach recorded in `.agents/FAILURE_GRAVEYARD.md`.
+- After two consecutive failed attempts of an approach, record it in `.agents/FAILURE_GRAVEYARD.md`.
+- Prioritize known working patterns over speculative re-tries.

@@ -47,8 +47,8 @@ def find_cli_agent():
             res = subprocess.run(f"which {binary}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             if res.returncode == 0 and res.stdout.strip():
                 return binary
-        except Exception:
-            pass
+        except (FileNotFoundError, subprocess.SubprocessError):
+            continue
     return None
 
 def run_agent_turn(agent_bin: str, prompt: str, project_dir: Path, log_file: Path):

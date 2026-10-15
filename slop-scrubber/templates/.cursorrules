@@ -1,0 +1,4 @@
+# Slop Scrubber: Code Hygiene & Anti-Cruft Standards
+- Remove all debugging statements (`console.log`, `print(..., debug)`, `breakpoint()`) before submitting changes.
+- Disallow silent exception suppression (`except: pass` or `catch {}`).
+- Maintain clean file formatting with proper EOF newlines and zero trailing spaces.

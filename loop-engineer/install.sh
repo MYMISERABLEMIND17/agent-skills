@@ -20,10 +20,14 @@ chmod +x "$SCRIPT_DIR/scripts/audit_trajectory.py"
 # 1. Install skill to Antigravity / Gemini CLI
 echo "📦 Installing skill to Antigravity (~/.gemini/config/skills/loop-engineer)..."
 cp "$SCRIPT_DIR/SKILL.md" "$GEMINI_SKILLS_DIR/SKILL.md"
+cp -r "$SCRIPT_DIR/scripts" "$GEMINI_SKILLS_DIR/"
+cp -r "$SCRIPT_DIR/templates" "$GEMINI_SKILLS_DIR/"
 
 # 2. Install skill to Claude Code
 echo "📦 Installing skill to Claude Code (~/.claude/skills/loop-engineer)..."
 cp "$SCRIPT_DIR/SKILL.md" "$CLAUDE_SKILLS_DIR/SKILL.md"
+cp -r "$SCRIPT_DIR/scripts" "$CLAUDE_SKILLS_DIR/"
+cp -r "$SCRIPT_DIR/templates" "$CLAUDE_SKILLS_DIR/"
 
 # 3. Create global CLI shortcut `loop-engineer`
 echo "⚡ Creating global CLI shortcut in $LOCAL_BIN_DIR/loop-engineer..."
@@ -31,10 +35,7 @@ cat << 'EOF' > "$LOCAL_BIN_DIR/loop-engineer"
 #!/usr/bin/env bash
 # Global shortcut for Loop Engineer Trajectory Auditor
 
-SOURCE_DIR="$(dirname "$(realpath "$0")")/../../Desktop/MY RAN IDEAS/loop-engineer"
-if [ ! -d "$SOURCE_DIR" ]; then
-    SOURCE_DIR="$HOME/Desktop/MY RAN IDEAS/loop-engineer"
-fi
+SOURCE_DIR="$HOME/.gemini/config/skills/loop-engineer"
 
 case "$1" in
     cursor)

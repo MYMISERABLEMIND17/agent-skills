@@ -23,10 +23,14 @@ chmod +x "$SCRIPT_DIR/scripts/overnight_loop.py"
 # 3. Install skill to Antigravity / Gemini CLI
 echo "📦 Installing skill to Antigravity (~/.gemini/config/skills/overnight-autopilot)..."
 cp "$SCRIPT_DIR/SKILL.md" "$GEMINI_SKILLS_DIR/SKILL.md"
+cp -r "$SCRIPT_DIR/scripts" "$GEMINI_SKILLS_DIR/"
+cp -r "$SCRIPT_DIR/templates" "$GEMINI_SKILLS_DIR/"
 
 # 4. Install skill to Claude Code
 echo "📦 Installing skill to Claude Code (~/.claude/skills/overnight-autopilot)..."
 cp "$SCRIPT_DIR/SKILL.md" "$CLAUDE_SKILLS_DIR/SKILL.md"
+cp -r "$SCRIPT_DIR/scripts" "$CLAUDE_SKILLS_DIR/"
+cp -r "$SCRIPT_DIR/templates" "$CLAUDE_SKILLS_DIR/"
 
 # 5. Create global CLI shortcut `autopilot` in ~/.local/bin
 echo "⚡ Creating global CLI shortcut in $LOCAL_BIN_DIR/autopilot..."
@@ -34,11 +38,7 @@ cat << 'EOF' > "$LOCAL_BIN_DIR/autopilot"
 #!/usr/bin/env bash
 # Global shortcut for Overnight Autopilot
 
-SOURCE_DIR="$(dirname "$(realpath "$0")")/../../Desktop/MY RAN IDEAS/overnight-autopilot"
-if [ ! -d "$SOURCE_DIR" ]; then
-    # Fallback to current working directory or skill location
-    SOURCE_DIR="$HOME/Desktop/MY RAN IDEAS/overnight-autopilot"
-fi
+SOURCE_DIR="$HOME/.gemini/config/skills/overnight-autopilot"
 
 case "$1" in
     init)

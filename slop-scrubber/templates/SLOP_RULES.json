@@ -1,0 +1,94 @@
+{
+  "general": [
+    {
+      "name": "debugger_breakpoint",
+      "regex": "^\\s*(?:debugger\\s*;?|breakpoint\\s*\\(\\s*\\)|pdb\\.set_trace\\s*\\(\\s*\\)|import\\s+pdb\\s*(?:;\\s*pdb\\.set_trace\\s*\\(\\s*\\))?)\\s*$",
+      "severity": "CRITICAL",
+      "message": "Interactive debugger or breakpoint left in code",
+      "autoclean": false
+    },
+    {
+      "name": "merge_conflict_marker",
+      "regex": "^(<<<<<<<|=======|>>>>>>>)",
+      "severity": "CRITICAL",
+      "message": "Git merge conflict marker left in file",
+      "autoclean": false
+    },
+    {
+      "name": "temporary_todo",
+      "regex": "^\\s*(?://|#|/\\*)\\s*(TODO|FIXME):?\\s*(remove|temporary|delete|cleanup|hack|dummy)",
+      "severity": "WARNING",
+      "message": "Temporary TODO or cleanup stub flagged for deletion",
+      "autoclean": false
+    }
+  ],
+  "python": {
+    "extensions": [".py"],
+    "rules": [
+      {
+        "name": "python_debug_print",
+        "regex": "^\\s*print\\s*\\(\\s*[\"'].*?(?:debug|>>>|###|temp|asdf|here\\s*\\d*|\\bval\\s*:).*?[\"'].*?\\)",
+        "severity": "WARNING",
+        "message": "Temporary debug print() statement",
+        "autoclean": true
+      },
+      {
+        "name": "python_silent_suppression",
+        "regex": "^[ \\t]*except(?:\\s+[A-Za-z0-9_]+)?\\s*:\\s*(?:pass|\\.\\.\\.)\\s*$",
+        "severity": "CRITICAL",
+        "message": "Silent exception suppression (except: pass / ...)",
+        "autoclean": false
+      },
+      {
+        "name": "python_fake_return_mock",
+        "regex": "^\\s*return\\s+\\{\\s*[\"']status[\"']\\s*:\\s*[\"']ok[\"']\\s*\\}\\s*$",
+        "severity": "WARNING",
+        "message": "Hardcoded fake return mock",
+        "autoclean": false
+      }
+    ]
+  },
+  "javascript": {
+    "extensions": [".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"],
+    "rules": [
+      {
+        "name": "js_console_log",
+        "regex": "^\\s*console\\.(log|debug|info|warn|error)\\s*\\(.*?\\);?",
+        "severity": "WARNING",
+        "message": "Console log statement left in code",
+        "autoclean": true
+      },
+      {
+        "name": "js_alert",
+        "regex": "^\\s*alert\\s*\\(.*?\\);?",
+        "severity": "CRITICAL",
+        "message": "Browser alert() left in frontend code",
+        "autoclean": true
+      }
+    ]
+  },
+  "go": {
+    "extensions": [".go"],
+    "rules": [
+      {
+        "name": "go_fmt_print",
+        "regex": "^\\s*fmt\\.(Println|Printf|Print)\\s*\\(.*?\\)",
+        "severity": "WARNING",
+        "message": "Temporary fmt.Print debug statement",
+        "autoclean": true
+      }
+    ]
+  },
+  "rust": {
+    "extensions": [".rs"],
+    "rules": [
+      {
+        "name": "rust_dbg_macro",
+        "regex": "^\\s*(?:dbg!\\s*\\(|println!\\s*\\(\\s*\"debug)",
+        "severity": "WARNING",
+        "message": "Rust dbg! or debug println! macro left in code",
+        "autoclean": true
+      }
+    ]
+  }
+}
